@@ -43,10 +43,12 @@ class Board extends React.Component {
   render() {
     const winner = calculateWinner(this.state.squares);
     let status;
-    if (winner) {
-      status = 'Won: ' + winner;
-    } else {
+    if (winner && winner === 'Tie') {
+      status = winner;
+    } else if (!winner) {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    } else {
+      status =  'Winner is: ' + (winner)
     }
 
     return (
@@ -110,5 +112,6 @@ function calculateWinner(squares) {
       return squares[a];
     }
   }
+  if (!squares.includes(null)) return 'Tie'
   return null;
 }
